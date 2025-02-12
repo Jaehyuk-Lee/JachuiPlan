@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   const [selectedSidoCd, setSelectedSidoCd] = useState('11'); // 서울특별시 기본값 (서울특별시 코드)
   const [selectedSggCd, setSelectedSggCd] = useState(''); // 시군구 선택
-  const [center, setCenter] = useState({ latitude: 37.5665, longitude: 126.978 }); // 서울시 기본 좌표
+  const center= { latitude: 37.5665, longitude: 126.978 }; // 서울시 기본 좌표
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [nickname, setNickname] = useState('');
   const [targetUmd, setTargetUmd] = useState(null);

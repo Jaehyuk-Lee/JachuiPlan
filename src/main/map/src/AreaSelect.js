@@ -12,7 +12,7 @@ function AreaSelect({ setIsModalOpen, isModalOpen, onDateChange }) {
   // 슬라이더 드래그 핸들러
   const handleMouseDown = (e, type) => {
     const slider = sliderRef.current;
-    const startX = e.clientX;
+    // const startX = e.clientX;
 
     const handleMouseMove = (moveEvent) => {
       const sliderRect = slider.getBoundingClientRect();

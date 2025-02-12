@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 const MapContainer = ({
   center,
@@ -38,24 +38,24 @@ const MapContainer = ({
   const isMouseDownRef = useRef(false);  // 마우스 버튼 눌림 여부
   const isDraggingRef = useRef(false);  // 드래깅 상태 여부
 
-  const handleMouseDown = () => {
+  const handleMouseDown = useCallback(() => {
     isMouseDownRef.current = true;
     isDraggingRef.current = false;
-  };
+  }, []);
 
-  const handleMouseMove = () => {
+  const handleMouseMove = useCallback(() => {
     if (isMouseDownRef.current) {
       isDraggingRef.current = true;
     }
-  };
+  }, []);
 
-  const handleMouseUp = (regionId, sggCd) => {
+  const handleMouseUp = useCallback((regionId, sggCd) => {
     if (!isDraggingRef.current) {
       onClickOverlay(regionId, sggCd);  // 드래깅 상태가 아니면 클릭 이벤트 실행
     }
     isMouseDownRef.current = false;
     isDraggingRef.current = false;
-  };
+  }, [onClickOverlay]);
 
   // 최신 props 업데이트
   useEffect(() => {
@@ -78,7 +78,7 @@ const MapContainer = ({
     overlays.length = 0;
   };
 
-  const updateMarkersInView = (map) => {
+  const updateMarkersInView = useCallback((map) => {
     if (!map) return;
 
     const currentProps = propsRef.current;
@@ -178,7 +178,7 @@ const MapContainer = ({
       .catch((err) => {
         console.error('Error updating markers: ', err);
       });
-  };
+  }, [handleMouseDown, handleMouseMove, handleMouseUp]);
 
   useEffect(() => {
     console.log('map:', map);  // map 객체 확인
@@ -200,7 +200,7 @@ const MapContainer = ({
           console.error("Error fetching region data:", error);
         });
     }
-  }, [selectedSggCd, map]);  // `selectedSggCd` 변경 시, 지도 중앙 업데이트
+  }, [selectedSggCd, selectedSidoCd, map]);  // `selectedSggCd` 변경 시, 지도 중앙 업데이트
 
   useEffect(() => {
     if (mapContainerRef.current && !map) {
@@ -214,13 +214,13 @@ const MapContainer = ({
 
       window.kakao.maps.event.addListener(newMap, 'idle', () => updateMarkersInView(newMap));
     }
-  }, []);
+  }, [updateMarkersInView, map, center]);
 
   useEffect(() => {
     if (map) {
       updateMarkersInView(map);
     }
-  }, [map, startYearMonth, endYearMonth, selectedType, rentType, minBuildYear, maxBuildYear, minFloor, maxFloor, minArea, maxArea]);
+  }, [map, startYearMonth, endYearMonth, selectedType, rentType, minBuildYear, maxBuildYear, minFloor, maxFloor, minArea, maxArea, updateMarkersInView]);
 
   return <div ref={mapContainerRef} style={{ width: '100%', height: 'calc(100vh - 174px)' }} />;
 
