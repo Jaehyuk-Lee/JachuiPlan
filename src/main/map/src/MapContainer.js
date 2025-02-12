@@ -90,7 +90,7 @@ const MapContainer = ({
     const west = bounds.getSouthWest().getLng();
     const level = map.getLevel();
 
-    fetch(`http://localhost/api/regioncd/regionsInBounds?north=${north}&east=${east}&south=${south}&west=${west}&level=${level}`)
+    fetch(`/api/regioncd/regionsInBounds?north=${north}&east=${east}&south=${south}&west=${west}&level=${level}`)
       .then((response) => response.json())
       .then((regionData) => {
         regionDataRef.current = regionData;
@@ -107,8 +107,8 @@ const MapContainer = ({
 
         const apiUrl =
           currentProps.selectedType === 'building'
-            ? `http://localhost/api/building/average?sggcds=${Array.from(sggcdsSet).join(',')}&startYearMonth=${currentProps.startYearMonth}&endYearMonth=${currentProps.endYearMonth}&rentType=${currentProps.rentType}&minBuildYear=${currentProps.minBuildYear || ''}&maxBuildYear=${currentProps.maxBuildYear || ''}&minFloor=${currentProps.minFloor || ''}&maxFloor=${currentProps.maxFloor || ''}&minArea=${minAreaInSquareMeters || ''}&maxArea=${maxAreaInSquareMeters || ''}`
-            : `http://localhost/api/officeHotel/average?sggcds=${Array.from(sggcdsSet).join(',')}&startYearMonth=${currentProps.startYearMonth}&endYearMonth=${currentProps.endYearMonth}&rentType=${currentProps.rentType}&minBuildYear=${currentProps.minBuildYear || ''}&maxBuildYear=${currentProps.maxBuildYear || ''}&minFloor=${currentProps.minFloor || ''}&maxFloor=${currentProps.maxFloor || ''}&minArea=${minAreaInSquareMeters || ''}&maxArea=${maxAreaInSquareMeters || ''}`;
+            ? `/api/building/average?sggcds=${Array.from(sggcdsSet).join(',')}&startYearMonth=${currentProps.startYearMonth}&endYearMonth=${currentProps.endYearMonth}&rentType=${currentProps.rentType}&minBuildYear=${currentProps.minBuildYear || ''}&maxBuildYear=${currentProps.maxBuildYear || ''}&minFloor=${currentProps.minFloor || ''}&maxFloor=${currentProps.maxFloor || ''}&minArea=${minAreaInSquareMeters || ''}&maxArea=${maxAreaInSquareMeters || ''}`
+            : `/api/officeHotel/average?sggcds=${Array.from(sggcdsSet).join(',')}&startYearMonth=${currentProps.startYearMonth}&endYearMonth=${currentProps.endYearMonth}&rentType=${currentProps.rentType}&minBuildYear=${currentProps.minBuildYear || ''}&maxBuildYear=${currentProps.maxBuildYear || ''}&minFloor=${currentProps.minFloor || ''}&maxFloor=${currentProps.maxFloor || ''}&minArea=${minAreaInSquareMeters || ''}&maxArea=${maxAreaInSquareMeters || ''}`;
 
         return fetch(apiUrl)
           .then((response) => response.json())

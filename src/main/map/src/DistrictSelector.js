@@ -12,7 +12,7 @@ const DistrictSelector = ({ selectedSidoCd, selectedSggCd, setSelectedSggCd }) =
     setError(null); // 에러 초기화
 
     // API 호출하여 해당 시도의 구 데이터를 가져옴
-    fetch(`http://localhost/api/regioncd/${selectedSidoCd}`)
+    fetch(`/api/regioncd/${selectedSidoCd}`)
       .then(response => response.json()) // 응답을 JSON으로 파싱
       .then(data => {
         // TODO: 시도데이터도 받아오는데, 해당 시도 데이터를 이용해서 지도의 중심을 이동시켜야 함.
