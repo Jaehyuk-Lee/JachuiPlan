@@ -33,7 +33,7 @@ const Header = (props) => {
                 />
                 <a
                   className={`d-inline nav-link align-middle ${props.menu === "community" ? "active" : ""}`}
-                  href="http://localhost/board/infolist"
+                  href="/board/infolist"
                 >
                   커뮤니티
                 </a>
@@ -46,7 +46,7 @@ const Header = (props) => {
                 />
                 <a
                   className={`d-inline nav-link align-middle ${props.menu === "mypage" ? "active" : ""}`}
-                  href="http://localhost/users/mypage"
+                  href="/users/mypage"
                 >
                   마이페이지
                 </a>
@@ -59,16 +59,16 @@ const Header = (props) => {
             {props.isAuthenticated ? (
               <>
                 <span className="me-3 text-muted align-middle">{props.nickname}</span>
-                <a className="btn btn-outline-secondary btn-sm align-middle" href="http://localhost/users/logout">
+                <a className="btn btn-outline-secondary btn-sm align-middle" href="/users/logout">
                   로그아웃
                 </a>
               </>
             ) : (
               <>
-                <a className="btn btn-outline-secondary btn-sm align-middle me-3" href="http://localhost/users/login">
+                <a className="btn btn-outline-secondary btn-sm align-middle me-3" href="/users/login">
                   로그인
                 </a>
-                <a className="btn btn-outline-secondary btn-sm align-middle" href="http://localhost/users/signup">
+                <a className="btn btn-outline-secondary btn-sm align-middle" href="/users/signup">
                   회원가입
                 </a>
               </>

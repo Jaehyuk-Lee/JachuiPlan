@@ -23,7 +23,7 @@ const ScrapButton = ({ isAuthenticated, targetUmd }) => {
   const handleScrapClick = (regioncdId) => {
     if(!isAuthenticated){
       if(window.confirm("로그인 하시겠습니까?")){
-        window.location.href = `http://localhost/users/login`;
+        window.location.href = `/users/login`;
       }
       return;
     }
