@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set lowercase to repository name
         run: echo "REPO_LOWER=${REPO_NAME,,}" >> $GITHUB_ENV
 
@@ -67,7 +67,7 @@ jobs:
     #
     # - name: Build with Gradle 8.9
     #   run: gradle build
-    
+
       - name: Docker Build and Push Action
         uses: docker/setup-buildx-action@v2
 
@@ -121,4 +121,4 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-2
-    - run: aws ecs update-service --cluster jachuiplan-ecs --service jachuiplan-spring-boot --force-new-deployment
+    - run: aws ecs update-service --cluster jachuiplan-ecs --service jachuiplan-ecs-service-private --force-new-deployment
