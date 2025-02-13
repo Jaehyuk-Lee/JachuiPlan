@@ -1,7 +1,7 @@
 const replyFragment = $("#replyFragment");
 
 //const csrfToken = $("#csrfToken").val();
-axios.defaults.baseURL = 'http://localhost';
+axios.defaults.baseURL = '/';
 axios.defaults.withCredentials = true;
 const path = window.location.pathname;
 const bno = path.split("/").pop();

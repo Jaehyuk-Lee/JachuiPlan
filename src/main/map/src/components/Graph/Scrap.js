@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { select, scaleBand, axisBottom, scaleLinear, axisLeft, min, max } from 'd3';
 
 function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
@@ -23,7 +23,7 @@ function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
 
     const countColor = '#69b3a2';
 
-    function getData(sggcd, startYearMonth, endYearMonth) {
+    const getData = useCallback((sggcd, startYearMonth, endYearMonth) => {
       axios.get(`/api/${selectedType}/average`, {
         params: {
           sggcds: sggcd,
@@ -37,13 +37,6 @@ function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
           minArea: minArea,
           maxArea: maxArea
         },
-        // paramsSerializer: function(paramObj) {
-        //   const params = new URLSearchParams();
-        //   for (const key in paramObj) {
-        //       params.append(key, paramObj[key]);
-        //   }
-        //   return params.toString();
-        // }
       })
       .then((res) => {
         setData(res.data);
@@ -51,7 +44,7 @@ function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
       .catch((err) => {
         console.log(err);
       });
-    }
+    }, [selectedType, rentType, minBuildYear, maxBuildYear, minFloor, maxFloor, minArea, maxArea]);
 
     function updateGraph(data) {
       const margin = { top: 30, right: 30, bottom: 30, left: 30 };
@@ -76,7 +69,7 @@ function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
         .attr("transform", `translate(0,${height - margin.bottom})`)
         .selectAll("text") // x축 텍스트 선택
         .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end") // 텍스트 정렬 (끝쪽 정렬)
+        .style("textAnchor", "end") // 텍스트 정렬 (끝쪽 정렬)
         .attr("dx", "-0.5em") // x축 텍스트의 위치를 약간 조정
 
       // y축
@@ -141,7 +134,8 @@ function Scarp({targetUmdSggcd, startYearMonth, endYearMonth,
       minFloor,
       maxFloor,
       minArea,
-      maxArea]);
+      maxArea,
+      getData]);
 
     return (
         <div>

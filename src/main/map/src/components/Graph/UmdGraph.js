@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { select, axisBottom, scaleLinear, axisLeft, min, max, scaleTime, timeMonth, timeFormat, timeDay, axisRight } from 'd3';
 import './UmdGraph.css';
@@ -15,7 +15,7 @@ function UmdGraph({ region,
     minArea,
     maxArea,
 }) {
-    const [data, setData] = useState([{"umdnm": "", "yearMonth": "", "avgMonthlyRent": 0, "avgDeposit": 0, "count": 0}]);
+    const [data, setData] = useState([{ "umdnm": "", "yearMonth": "", "avgMonthlyRent": 0, "avgDeposit": 0, "count": 0 }]);
 
     const ref = useRef();
 
@@ -28,8 +28,8 @@ function UmdGraph({ region,
     const avgMonthlyRentColor = '#F3b3a2';
     const avgDepositColor = '#1372a2';
 
-    function getData(sggcd, name) {
-        if(!sggcd) return;
+    const getData = useCallback((sggcd, name) => {
+        if (!sggcd) return;
         axios.get(`/api/${selectedType}/transition`, {
             params: {
                 sggcd: sggcd,
@@ -50,14 +50,14 @@ function UmdGraph({ region,
             .catch((err) => {
                 console.log(err);
             });
-    }
+    }, [selectedType, rentType, minBuildYear, maxBuildYear, minFloor, maxFloor, minArea, maxArea]);
 
     function extractDong(address) {
         const match = address.match(/[\w가-힣]+[동가]$/);
         return match ? match[0] : null;
     }
 
-    function updateGraph(newData) {
+    const updateGraph = useCallback((newData) => {
         const umdnm = extractDong(region.name);
 
         // 데이터가 없다면
@@ -411,11 +411,11 @@ function UmdGraph({ region,
                     .text(d => d.avgDeposit.toFixed(1)),
                 exit => exit.remove()
             );
-    }
+    }, [region, containerWidth, containerHeight]);
 
     useEffect(() => {
         updateGraph(data);
-    }, [data]);
+    }, [data, updateGraph]);
 
     useEffect(() => {
         getData(region.cd, region.name);
@@ -427,7 +427,8 @@ function UmdGraph({ region,
         minFloor,
         maxFloor,
         minArea,
-        maxArea]);
+        maxArea, 
+        getData]);
 
     return (
         <div>

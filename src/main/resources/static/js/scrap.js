@@ -1,5 +1,5 @@
 //const csrfToken = $("#csrfToken").val();
-axios.defaults.baseURL = 'http://localhost';
+axios.defaults.baseURL = '/';
 const path = window.location.pathname;
 const bno = path.split("/").pop();
 const scrapFragment = $("#scrapFragment");
