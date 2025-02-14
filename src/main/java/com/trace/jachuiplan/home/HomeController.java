@@ -19,6 +19,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+    @GetMapping("")
+    public String root() {
+        return "redirect:/map/";
+    }
     @GetMapping("/home")
     public String home() {
         return "home";
