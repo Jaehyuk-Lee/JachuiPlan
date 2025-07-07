@@ -33,7 +33,8 @@ JachuiPlan은 전월세 부동산(오피스텔, 주택) 통계, 커뮤니티, �
 
 ## 🛠️ 기술 스택
 
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat&logo=spring-boot&logoColor=white)
+![Java](https://img.shields.io/badge/Java-21-blue?style=flat&logo=java)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?style=flat-square&logo=Spring&logoColor=white)
 ![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=flat)
 ![Spring Security](https://img.shields.io/badge/springsecurity-6DB33F?style=flat&logo=spring&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=flat&logo=node.js&logoColor=white)
