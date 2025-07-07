@@ -29,7 +29,7 @@ JachuiPlan은 전월세 부동산(오피스텔, 주택) 통계, 커뮤니티, �
 - **회원/인증**: OAuth2(구글) 기반 로그인, 회원가입, 마이페이지 등
 
 ### 역할 분배
-![image](<docs\images\readme\role.png>)
+![image](<docs/images/readme/role.png>)
 
 ## 🛠️ 기술 스택
 
