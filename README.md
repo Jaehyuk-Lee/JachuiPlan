@@ -28,6 +28,9 @@ JachuiPlan은 전월세 부동산(오피스텔, 주택) 통계, 커뮤니티, �
 - **스크랩/좋아요**: 관심 매물, 게시글 스크랩 및 좋아요 기능
 - **회원/인증**: OAuth2(구글) 기반 로그인, 회원가입, 마이페이지 등
 
+### 역할 분배
+![image](<docs\images\readme\role.png>)
+
 ## 🛠️ 기술 스택
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat&logo=spring-boot&logoColor=white)
