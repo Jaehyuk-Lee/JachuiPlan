@@ -51,6 +51,16 @@ JachuiPlan은 전월세 부동산(오피스텔, 주택) 통계, 커뮤니티, �
 
 각 기술의 장점을 살리고 요구되는 화면의 특성에 따라 적합한 방식을 선택했습니다.
 
+## 스크린샷
+
+### 메인 페이지
+
+![image](docs/images/readme/main_page.png)
+
+### D3 시각화 (gif 이미지)
+
+![image](docs/images/readme/D3_Graph.gif)
+
 ## 📂 프로젝트 구조
 ```
 ├── src/main/java/com/trace/jachuiplan
@@ -77,6 +87,9 @@ JachuiPlan은 전월세 부동산(오피스텔, 주택) 통계, 커뮤니티, �
 ## ⚙️ 빌드 및 실행 방법
 
 반드시 프론트엔드를 먼저 빌드하고 백엔드를 빌드해야 합니다. 빌드된 프론트엔드 소스코드를 Spring Boot 어플리케이션이 포함하는 형태로 빌드됩니다.
+
+**외부 데이터베이스 준비**
+- Oracle 필요
 
 ### 1. 프론트엔드(React)
 ```bash
