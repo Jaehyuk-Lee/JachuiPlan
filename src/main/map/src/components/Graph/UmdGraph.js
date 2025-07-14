@@ -435,7 +435,7 @@ function UmdGraph({ region,
             <svg className="svg-top" ref={ref} style={{ width: containerWidth, height: containerHeight }}>
                 <g className="x-axis" />
                 <g className="y-axisR" />
-                <text className="nodata" x="300" y="230" text-anchor="start" fill="black" opacity="1" font-size="20px">데이터가 없습니다.</text>
+                <text className="nodata" x="300" y="230" textAnchor="start" fill="black" opacity="1" fontSize="20px">데이터가 없습니다.</text>
             </svg><br />
         </div>
     );

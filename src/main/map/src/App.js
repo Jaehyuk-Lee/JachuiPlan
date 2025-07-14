@@ -28,8 +28,8 @@ function App() {
   const [maxArea, setMaxArea] = useState(null);
   const [minBuildYear, setminBuildYear,] = useState(null);
   const [maxBuildYear, setmaxBuildYear,] = useState(null);
-  const [minFloor, setMinFloor] = useState(null);
-  const [maxFloor, setMaxFloor] = useState(null);
+  const [minFloor, setMinFloor] = useState('');
+  const [maxFloor, setMaxFloor] = useState('');
 
   const closeUmdModal = () => {
     setIsShowUmdModal(false);
